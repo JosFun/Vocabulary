@@ -14,10 +14,8 @@ public class TrainStage extends ProgStage {
 	public TrainStage ( Stage window, Scene menu, BorderPane layout ) {
 		super ( window, menu, layout );
 		this.head.setText( "Train your vocabulary" );
-		this.left.getGraphicsContext2D( ).setFill( Color.ORANGE );
-		this.right.getGraphicsContext2D( ).setFill( Color.ORANGE );
-		this.left.getGraphicsContext2D().fillRect(0, 0, this.left.getWidth(), this.left.getHeight ( ));
-		this.right.getGraphicsContext2D().fillRect(0, 0, this.right.getWidth(), this.right.getHeight ( ));
+		this.left.setColor( Color.ORANGE );
+		this.right.setColor( Color.ORANGE );
 
 	}
 	

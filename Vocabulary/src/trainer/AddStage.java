@@ -15,10 +15,8 @@ public class AddStage extends ProgStage {
 	public AddStage ( Stage window, Scene menu, BorderPane layout ) {
 		super ( window, menu, layout );
 		this.head.setText( "Add new vocabulary" );
-		this.left.getGraphicsContext2D( ).setFill( Color.AQUAMARINE );
-		this.right.getGraphicsContext2D( ).setFill( Color.AQUAMARINE );
-		this.left.getGraphicsContext2D().fillRect(0, 0, this.left.getWidth(), this.left.getHeight ( ));
-		this.right.getGraphicsContext2D().fillRect(0, 0, this.right.getWidth(), this.right.getHeight ( ));
+		this.left.setColor ( Color.AQUAMARINE );
+		this.right.setColor( Color.AQUAMARINE );
 	}
 	
 }
