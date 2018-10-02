@@ -12,11 +12,18 @@ import javafx.scene.control.*;
 import javafx.stage.*;
 
 public class AddStage extends ProgStage {
+	
+	/* Create all the tools, buttons and labels you need to create new lists of vocables. */
+	/*private HBox createListConfig ( ) {
+		
+	}*/
+	
 	public AddStage ( Stage window, Scene menu, BorderPane layout ) {
 		super ( window, menu, layout );
 		this.head.setText( "Add new vocabulary" );
 		this.left.setColor ( Color.AQUAMARINE );
 		this.right.setColor( Color.AQUAMARINE );
+		
 	}
 	
 }

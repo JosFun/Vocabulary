@@ -31,7 +31,9 @@ public class Display extends Application {
 		this.window.setWidth( monitorWidth / 2 );
 		this.window.setHeight( monitorHeight / 2 );
 		
+		/* The Layout of the display is a BorderPane. */
 		this.layout = new BorderPane ( );		
+		/* Create the welcome scene. */
 		this.welcome = new Scene ( this.layout, monitorWidth / 2, monitorHeight / 2 );
 		this.welcome.setFill( null );
 

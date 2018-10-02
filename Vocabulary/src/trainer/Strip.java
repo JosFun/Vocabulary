@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/* A resizable canvas which provides a strip you can set as top or bottom of your BorderPane. */
 public class Strip extends Canvas {
 
 	private double monitorWidth = Screen.getPrimary().getBounds().getWidth();
@@ -22,7 +23,7 @@ public class Strip extends Canvas {
 	
 	@Override
 	public double minHeight ( double width ) {
-		return ( this.window.getHeight ( ) / 27 );
+		return ( this.window.getHeight ( ) / 24 );
 	}
 	
 	@Override

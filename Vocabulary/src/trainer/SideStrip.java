@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
+/* A resizable canvas element */
 public class SideStrip extends Canvas {
 
 	private Color color = Color.AQUA;
@@ -63,8 +64,6 @@ public class SideStrip extends Canvas {
 		this.getGraphicsContext2D().fillRect(0, 0, super.getWidth(), super.getHeight ( ));
 		super.setWidth( width );
 		super.setHeight( height );
-		System.out.println( "REsizing happende" );
-		System.out.println( this.window.getHeight ( ) + ", " + this.window.getWidth ( ) );
 		this.getGraphicsContext2D().setFill( this.color );
 		this.getGraphicsContext2D( ).fillRect( 0, 0, width, height );
 	}
