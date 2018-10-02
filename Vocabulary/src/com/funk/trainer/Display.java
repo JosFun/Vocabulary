@@ -1,4 +1,4 @@
-package trainer;
+package com.funk.trainer;
 
 import javafx.scene.*;
 import javafx.application.*;

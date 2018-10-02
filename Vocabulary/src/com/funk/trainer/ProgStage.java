@@ -1,4 +1,4 @@
-package trainer;
+package com.funk.trainer;
 
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -30,6 +30,28 @@ public abstract class ProgStage extends Scene {
 	/* The main menu scene. */
 	Scene menu;
 	
+	/* Calculate a base value according to which every font gets adapted.
+	 * The base value does just depends on the passed width and height
+	 *  by taking respect to the current scale. */
+	static double calcFontBaseParam ( double windowHeight, double windowWidth ) {
+		double width = windowWidth;
+		double height = windowHeight;
+		
+		if ( width / height >= 1.7 && width / height <= 1.84 ) {
+			return ( width * 0.5 + height * 0.5 );
+		}
+		else if ( width / height > 1.84 && width / height <= 1.91 ){
+			return ( height * 0.6 + width * 0.4 );
+		}
+		else if ( width / height > 1.91 ) {
+			return ( height * 0.7 + width * 0.3 );
+		}
+		else if ( width / height < 1.7 && width / height >= 1.63 ) {
+			return ( height * 0.4 + width * 0.6 );
+		}
+		else return ( height * 0.3 + width * 0.7 );
+	}
+	
 	public ProgStage( Stage window, Scene menu, BorderPane layout ) {
 		super ( layout, window.getWidth ( ), 
 				window.getHeight ( ) );
@@ -50,13 +72,11 @@ public abstract class ProgStage extends Scene {
 		this.leave.setMaxHeight( Double.MAX_VALUE );
 		this.leave.setMinWidth( this.window.getWidth ( ) / 10 );
 		this.leave.setPrefWidth( this.window.getWidth() / 10 );
-		this.leave.setFont( new Font ( fontName, this.calcFontBase() / 70 ) );
 		this.leave.setOnAction( e -> {
 			this.window.setScene ( this.menu );
 		});
 				
 		this.head = new Label ( );
-		this.head.setFont( new Font ( fontName, this.calcFontBase() / 40 ));
 
 		/* Create all canvas elements on the screen. */
 		this.left = new SideStrip ( this.window, this.getWidth ( ) / 6, this.getHeight ( ) * ( 8.31 / 10 ) );
@@ -96,6 +116,9 @@ public abstract class ProgStage extends Scene {
 		this.window.widthProperty().addListener( e -> {
 			this.leave.setPrefWidth( this.window.getWidth() / 10 );
 			this.topStack.setPrefWidth( this.window.getWidth ( ));
+			/* This invocation let's automatically adapt the sizes of the nodes with text on it according
+			 * to their new font sizes. So by just adapting the font sizes of the elements, they themselves 
+			 * adapt their sizes to the now bigger screen. */
 			this.adaptFonts ( );
 		});
 		
@@ -115,25 +138,9 @@ public abstract class ProgStage extends Scene {
 		this.leave.setFont( new Font ( fontName, ( this.calcFontBase ( )) / 70 ));
 	}
 
-	/* Calculate a base value according to which every font gets adapted.
-	 * The base value does just depends on the current width and height of the stage
-	 *  by taking respect to the current scale. */
+	/* Calculate a base font size value according to the current screenSize. Uses a static method of this class. */
 	double calcFontBase ( ) {
-		double height = this.window.getHeight ( );
-		double width = this.window.getWidth( );
-		if ( width / height >= 1.7 && width / height <= 1.84 ) {
-			return ( this.window.getHeight ( ) * 0.5 + this.window.getWidth ( ) * 0.5 );
-		}
-		else if ( width / height > 1.84 && width / height <= 1.91 ){
-			return ( this.window.getHeight ( ) * 0.6 + this.window.getWidth ( ) * 0.4 );
-		}
-		else if ( width / height > 1.91 ) {
-			return ( this.window.getHeight ( ) * 0.7 + this.window.getWidth ( ) * 0.3 );
-		}
-		else if ( width / height < 1.7 && width / height >= 1.63 ) {
-			return ( this.window.getHeight ( ) * 0.4 + this.window.getWidth ( ) * 0.6 );
-		}
-		else return ( this.window.getHeight ( ) * 0.3 + this.window.getWidth ( ) * 0.7 );
+		return ( calcFontBaseParam ( this.window.getHeight(), this.window.getWidth() ) );
 	}
 	
 	

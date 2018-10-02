@@ -1,4 +1,4 @@
-package trainer;
+package com.funk.trainer;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,6 +16,8 @@ public class TrainStage extends ProgStage {
 		this.head.setText( "Train your vocabulary" );
 		this.left.setColor( Color.ORANGE );
 		this.right.setColor( Color.ORANGE );
+		
+		this.adaptFonts ( );
 
 	}
 	
