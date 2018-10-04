@@ -7,11 +7,11 @@ import com.funk.vocables.*;
 import java.math.*;
 
 public class Randomizer {
-	private ArrayList<Vocable> vocList;
+	private VocList vocList;
 	private Language lang;
 	
 	/* Constructor: Initialize the Randomizer with a list of vocabulary. */
-	public Randomizer ( ArrayList<Vocable> vocList, Language lang ) {
+	public Randomizer ( VocList vocList, Language lang ) {
 		this.vocList = vocList;
 		this.lang = lang;
 	}
