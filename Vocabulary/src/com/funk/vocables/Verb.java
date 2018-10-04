@@ -8,6 +8,14 @@ public final class Verb extends Vocable {
 	private VerbGender gender;
 	private Modus modus;
 	
+	{
+		this.nameOfType = "Verb";
+	}
+	
+	public Verb ( ) {
+		super ( "Verb", Language.ENGLISH );
+	}
+	
 	public Verb(String word, Language lang, 
 				VerbNumber numerus, VerbPerson person, Tempus tempus, VerbGender gender, Modus modus ) {
 		super(word, lang);

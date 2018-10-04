@@ -4,6 +4,14 @@ public final class Adjective extends Vocable {
 
 	private Comparation comparation;
 	
+	{
+		this.nameOfType = "Adjective";
+	}
+	
+	public Adjective ( ) {
+		super ( "Adjective", Language.ENGLISH );
+	}
+	
 	public Adjective(String word, Language lang, Comparation comparation ) {
 		super(word, lang);
 	}

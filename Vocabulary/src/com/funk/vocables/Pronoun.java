@@ -4,6 +4,13 @@ public final class Pronoun extends Vocable {
 	
 	private PronounKind kind;
 	
+	{
+		this.nameOfType = "Pronoun";
+	}
+	
+	public Pronoun ( ) {
+		super ( "Pronoun", Language.ENGLISH );
+	}
 	public Pronoun(String word, Language lang) {
 		super(word, lang);
 		// TODO Auto-generated constructor stub

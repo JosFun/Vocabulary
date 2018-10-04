@@ -7,8 +7,15 @@ public final class Noun extends Vocable {
 	private NounNumber numerus;
 	private Article article;
 	
+	{
+		this.nameOfType = "Noun";
+	}
+	
 	private void determineArticle ( ) {
-		if ( this.lang == Language.FRENCH ) {
+		if ( this.lang == Language.ENGLISH ) {
+			this.article = new Article ( "The", this.lang );
+		}
+		else if ( this.lang == Language.FRENCH ) {
 			/* In French, an singular article transforms to l' in front of nouns beginning with a vocal or a muted h.*/
 			char c = this.word.toCharArray() [ 0 ]; /* get first char in the array*/
 			if ( this.numerus == NounNumber.SINGULAR && 
@@ -27,6 +34,14 @@ public final class Noun extends Vocable {
 				this.article = new Article ( "les", this.lang );
 			}
 		}
+	}
+	
+	/* Some kind of default constructor: Just create a basic noun. */
+	public Noun ( ) {
+		super ( "Noun", Language.ENGLISH );
+		this.genus = Gender.NEUTRAL;
+		this.numerus = NounNumber.SINGULAR;
+		this.determineArticle( );
 	}
 	
 	public Noun ( String word, Language lang, Gender genus, NounNumber numerus, Particularity particularity ) {

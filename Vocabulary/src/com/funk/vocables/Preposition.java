@@ -2,6 +2,14 @@ package com.funk.vocables;
 
 public final class Preposition extends Vocable {
 
+	{
+		this.nameOfType = "Preposition";
+	}
+	
+	public Preposition ( ) {
+		super ( "Prepositon", Language.ENGLISH );
+	}
+	
 	public Preposition(String word, Language lang) {
 		super(word, lang);
 		// TODO Auto-generated constructor stub

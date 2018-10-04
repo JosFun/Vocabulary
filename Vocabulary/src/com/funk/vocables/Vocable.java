@@ -1,12 +1,13 @@
 package com.funk.vocables;
 
 public abstract class Vocable {
+	String nameOfType; /* The name of the word type. */
 	String word;
 	Language lang;
 	Particularity particularity;
 	boolean known;
 	
-	Vocable specialForm = null; /* If a vocable has any kind of special form, you can add this to the original vocable.*/
+	Vocable specialForm = null; /* If this vocable has any kind of other word connected to it, add it here. */
 	
 	/* Decide whether or not the specified char is a vocal. */
 	static boolean isVocal ( char c ) {
@@ -34,6 +35,10 @@ public abstract class Vocable {
 	
 	public Vocable ( String word, Language lang, Particularity particularity, Vocable v ) {
 		this ( word, lang, particularity );
+	}
+	
+	public String getTypeName ( ) {
+		return ( this.nameOfType );
 	}
 	
 	

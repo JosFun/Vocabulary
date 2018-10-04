@@ -13,18 +13,18 @@ public class VocList extends ArrayList<Vocable> {
 	private ArrayList<Vocable> wordTypes = new ArrayList <>( ); /* A list of all the word types you may add to this list. */
 	
 	/* Construct a new list with the specified name, language and wordtypes.*/
-	public VocList( String name, Language lang, Vocable... wordtype  ) {
+	public VocList( String name, Language lang, ArrayList<Vocable> wordType  ) {
 		this.name = name;
 		this.lang = lang;
-		this.addWordTypes( wordtype );
+		this.wordTypes = wordType;
 	}
 	
 	/* Constructs a new vocList with the specified initial capacity. */
-	public VocList(int initialCapacity, String name, Language lang, Vocable... wordtype ) {
+	public VocList(int initialCapacity, String name, Language lang, ArrayList<Vocable> wordType ) {
 		super(initialCapacity);
 		this.name = name;
 		this.lang = lang;
-		this.addWordTypes( wordtype );
+		this.wordTypes = wordType;
 	}
 	
 	/* Add new wordTypes to the list of wordTypes, this list can contain. */
@@ -55,6 +55,17 @@ public class VocList extends ArrayList<Vocable> {
 	
 	public void setLanguage ( Language lang ) {
 		this.lang = lang;
+	}
+	
+	@Override
+	public String toString ( ) {
+		String s =  ( "This list is named " + this.name + ".\nIt consists of " + this.size() + " vocables of the " + 
+				this.lang + ". The following wordTypes are contained by this list: " );
+		for ( Vocable wordType: this.wordTypes ) {
+			s += "\n" + wordType.getTypeName();
+		}
+		
+		return ( s );
 	}
 
 }
