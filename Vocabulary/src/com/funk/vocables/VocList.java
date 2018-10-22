@@ -1,5 +1,5 @@
 package com.funk.vocables;
-
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -11,6 +11,41 @@ public class VocList extends ArrayList<Vocable> {
 	private String name; /* The name of this vocable list. */
 	private Language lang; /* The language of the vocables in this list. */
 	private ArrayList<Vocable> wordTypes = new ArrayList <>( ); /* A list of all the word types you may add to this list. */
+	
+	private Connection connect ( ) {
+		String url = "jdbc:sqlite:D://Databases/vocab.db";
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection( url );	
+		}
+		catch ( SQLException e ) {
+			System.out.println( e.getMessage() );
+		}
+		
+		return ( conn ); 
+		
+	}
+	
+	private void store ( ) throws ClassNotFoundException {
+		//Class.forName( "org.sqlite.JDBC" );
+		String sql = "select * from First;";
+		try {
+			Connection conn = this.connect();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			
+			while ( rs.next ( )) {
+				System.out.println( rs.getString( "Word" ));
+			}
+		}
+		catch ( SQLException e ) {
+			System.out.println( e.getMessage());
+		}
+	}
+	
+	public VocList ( ) {
+		
+	}
 	
 	/* Construct a new list with the specified name, language and wordtypes.*/
 	public VocList( String name, Language lang, ArrayList<Vocable> wordType  ) {
@@ -66,6 +101,11 @@ public class VocList extends ArrayList<Vocable> {
 		}
 		
 		return ( s );
+	}
+	
+	public static void main ( String [ ] args ) throws ClassNotFoundException {
+		VocList newone = new VocList ( );
+		newone.store ( );
 	}
 
 }
