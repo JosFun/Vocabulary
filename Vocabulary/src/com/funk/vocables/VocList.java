@@ -26,9 +26,7 @@ public class VocList extends ArrayList<Vocable> {
 		
 	}
 	
-	private void store ( ) throws ClassNotFoundException {
-		//Class.forName( "org.sqlite.JDBC" );
-		String sql = "select * from First;";
+	private void sqlQuery ( String query ) throws ClassNotFoundException {
 		try {
 			Connection conn = this.connect();
 			Statement stmt = conn.createStatement();
@@ -43,8 +41,17 @@ public class VocList extends ArrayList<Vocable> {
 		}
 	}
 	
-	public VocList ( ) {
+	private void store ( ) {
 		
+	}
+	
+	private void initDatabase ( ) {
+		String sql = "IF EXISTS ( SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE" + 
+					 "TABLE_NAME = " + this.name + ")\n" +
+					 "BEGIN\n\tdrop table " + this.name + "\nEND\n" + 
+					 "ELSE\nBEGIN\n\t" 
+					 "CREATE TABLE " + this.name + "(\n" +
+					 "nvarchar"
 	}
 	
 	/* Construct a new list with the specified name, language and wordtypes.*/
@@ -52,6 +59,8 @@ public class VocList extends ArrayList<Vocable> {
 		this.name = name;
 		this.lang = lang;
 		this.wordTypes = wordType;
+		this.initDatabase ( );
+		
 	}
 	
 	/* Constructs a new vocList with the specified initial capacity. */
@@ -60,6 +69,7 @@ public class VocList extends ArrayList<Vocable> {
 		this.name = name;
 		this.lang = lang;
 		this.wordTypes = wordType;
+		this.initDatabase ( );
 	}
 	
 	/* Add new wordTypes to the list of wordTypes, this list can contain. */
