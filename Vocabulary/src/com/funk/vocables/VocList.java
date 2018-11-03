@@ -12,6 +12,7 @@ public class VocList extends ArrayList<Vocable> {
 	private Language lang; /* The language of the vocables in this list. */
 	private ArrayList<Vocable> wordTypes = new ArrayList <>( ); /* A list of all the word types you may add to this list. */
 	
+	/* This method connects the software to the database. */
 	private Connection connect ( ) {
 		String url = "jdbc:sqlite:D://Databases/vocab.db";
 		Connection conn = null;
@@ -30,7 +31,7 @@ public class VocList extends ArrayList<Vocable> {
 		try {
 			Connection conn = this.connect();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			ResultSet rs = stmt.executeQuery( query );
 			
 			while ( rs.next ( )) {
 				System.out.println( rs.getString( "Word" ));
@@ -60,6 +61,10 @@ public class VocList extends ArrayList<Vocable> {
 		this.lang = lang;
 		this.wordTypes = wordType;
 		this.initDatabase ( );
+		
+	}
+	
+	public VocList ( ) {
 		
 	}
 	

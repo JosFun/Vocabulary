@@ -7,7 +7,7 @@ public abstract class Vocable {
 	Particularity particularity;
 	boolean known;
 	
-	Vocable translation; /* Translation of this vocable is another vocable*/
+	VocList translations; /* Translation of this vocable is another vocable*/
 	Vocable specialForm = null; /* If this vocable has any kind of other word connected to it, add it here. */
 	
 	/* Decide whether or not the specified char is a vocal. */
@@ -38,10 +38,10 @@ public abstract class Vocable {
 		this ( word, lang, particularity );
 	}
 	
-	/* Add a translation to the vocable depending on the languages of the voclist you are currently using
+	/* Add translations to the vocable depending on the languages of the voclist you are currently using
 	 * to study this vocable. */
-	public void setranslation ( Vocable translation ) {
-		this.translation = translation;
+	public void setTranslations ( VocList translations ) {
+		this.translations = translations;
 	}
 	
 	/* This method edits the content of the boolean known.
@@ -50,14 +50,20 @@ public abstract class Vocable {
 		this.known = knownStatus;
 	}
 	
-	/* Give translation for this vocable. Depending on its correctness, the field this.known
+	/* Give a translation for this vocable. Depending on its correctness, the field this.known
 	 * will be set. Afterwards, this field's value is returned. */
-	public boolean testForTranslation ( String yourInput ) {
-		return ( this.known = yourInput.equals ( this.translation.toString ( ) ) );
+	public boolean testForTranslations ( String yourInput ) {
+		for ( Vocable translation : this.translations ) {
+			if ( yourInput.equals ( translation.toString ( ) ) ) {
+				return ( this.known = true );
+			}
+		}
+		
+		return ( false );
 	}
 	
-	public Vocable getTranslation ( ) {
-		return ( this.translation );
+	public VocList getTranslations ( ) {
+		return ( this.translations );
 	}
 	
 	public String getTypeName ( ) {

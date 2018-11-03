@@ -13,25 +13,25 @@ public final class Noun extends Vocable {
 	
 	private void determineArticle ( ) {
 		if ( this.lang == Language.ENGLISH ) {
-			this.article = new Article ( "The", this.lang );
+			this.article = new Article ( "The", this.lang, ArticleDefinity.DEFINED );
 		}
 		else if ( this.lang == Language.FRENCH ) {
 			/* In French, an singular article transforms to l' in front of nouns beginning with a vocal or a muted h.*/
 			char c = this.word.toCharArray() [ 0 ]; /* get first char in the array*/
 			if ( this.numerus == NounNumber.SINGULAR && 
 				( Vocable.isVocal( c ) || ( ( FrenchParticularity ) this.particularity ) == FrenchParticularity.NOUN_MUTED_H ) ) {
-				this.article = new Article ( "l'", this.lang );
+				this.article = new Article ( "l'", this.lang, ArticleDefinity.DEFINED );
 			}
 			else if ( this.numerus == NounNumber.SINGULAR ) {
 				if ( this.genus == Gender.MASCULINE ) {
-					this.article = new Article ( "le", this.lang );
+					this.article = new Article ( "le", this.lang, ArticleDefinity.DEFINED );
 				}
 				else {
-					this.article = new Article ( "la", this.lang );
+					this.article = new Article ( "la", this.lang, ArticleDefinity.DEFINED );
 				}
 			}
 			else {
-				this.article = new Article ( "les", this.lang );
+				this.article = new Article ( "les", this.lang, ArticleDefinity.DEFINED );
 			}
 		}
 	}
